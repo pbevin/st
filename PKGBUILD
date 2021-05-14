@@ -3,7 +3,7 @@
 pkgname=st-pbevin-git
 _pkgname=st
 pkgver=0.8.4.r1178.7e6e779
-pkgrel=5
+pkgrel=9
 epoch=1
 pkgdesc="Pete's custom suckless terminal"
 url=https://github.com/pbevin/st

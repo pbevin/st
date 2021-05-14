@@ -239,6 +239,8 @@ static MouseShortcut mshortcuts[] = {
 /* Internal keyboard shortcuts. */
 #define ALT Mod1Mask
 #define ALT_SHIFT (Mod1Mask|ShiftMask)
+#define MOD Mod4Mask
+#define MOD_SHIFT (Mod4Mask|ShiftMask)
 
 static char *openurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -o", "externalpipe", NULL };
 static char *copyurlcmd[] = { "/bin/sh", "-c", "st-urlhandler -c", "externalpipe", NULL };
@@ -246,34 +248,39 @@ static char *copyoutput[] = { "/bin/sh", "-c", "st-copyout", "externalpipe", NUL
 
 
 static Shortcut shortcuts[] = {
-        /* mask                 keysym          function        argument */
-        { XK_ANY_MOD,           XK_Break,       sendbreak,      {.i =  0} },
-        { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
-        { ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
-        { XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-        { ALT | ShiftMask,      XK_C,           clipcopy,       {.i =  0} },
-        { ALT | ShiftMask,      XK_V,           clippaste,      {.i =  0} },
-        { ALT,                  XK_c,           clipcopy,       {.i =  0} },
-        { ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
-        { ALT,                  XK_v,           clippaste,      {.i =  0} },
-        { ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
-        { ALT | ShiftMask,      XK_Num_Lock,    numlock,        {.i =  0} },
-        { ALT,                  XK_p,           kscrollup,      {.i =  1} },
-        { ALT,                  XK_n,           kscrolldown,    {.i =  1} },
-        { ALT,                  XK_Up,          kscrollup,      {.i =  1} },
-        { ALT,                  XK_Down,        kscrolldown,    {.i =  1} },
-        { ALT,                  XK_b,           kscrollup,      {.i = -1} },
-        { ALT,                  XK_f,           kscrolldown,    {.i = -1} },
-        { ALT,                  XK_u,           kscrollup,      {.i = -1} },
-        { ALT,                  XK_d,           kscrolldown,    {.i = -1} },
-        { ALT,                  XK_s,           changealpha,    {.f = -0.05} },
-        { ALT,                  XK_a,           changealpha,    {.f = +0.05} },
-        { ALT | ShiftMask,      XK_plus,        zoom,           {.f = +1} },
-        { ALT | ShiftMask,      XK_underscore,  zoom,           {.f = -1} },
-        { ALT | ShiftMask,      XK_parenright,  zoomreset,      {.f =  0} },
-        { ALT,                  XK_l,           externalpipe,   {.v = openurlcmd } },
-        { ALT,                  XK_y,           externalpipe,   {.v = copyurlcmd } },
-        { ALT,                  XK_o,           externalpipe,   {.v = copyoutput } },
+        /* mask           keysym          function        argument */
+        { XK_ANY_MOD,     XK_Break,       sendbreak,      {.i =  0} },
+        { ControlMask,    XK_Print,       toggleprinter,  {.i =  0} },
+        { ShiftMask,      XK_Print,       printscreen,    {.i =  0} },
+        { XK_ANY_MOD,     XK_Print,       printsel,       {.i =  0} },
+        { ALT_SHIFT,      XK_Num_Lock,    numlock,        {.i =  0} },
+
+        // copy/paste
+        { ALT_SHIFT,      XK_C,           clipcopy,       {.i =  0} },
+        { ALT_SHIFT,      XK_V,           clippaste,      {.i =  0} },
+        { ALT,            XK_c,           clipcopy,       {.i =  0} },
+        { ALT,            XK_v,           clippaste,      {.i =  0} },
+        { ShiftMask,      XK_Insert,      selpaste,       {.i =  0} },
+
+        // scrolling
+        { MOD_SHIFT,      XK_K,           kscrollup,      {.i =  1} },
+        { MOD_SHIFT,      XK_J,           kscrolldown,    {.i =  1} },
+        { MOD_SHIFT,      XK_U,           kscrollup,      {.i = -1} },
+        { MOD_SHIFT,      XK_D,           kscrolldown,    {.i = -1} },
+        { ALT,            XK_Up,          kscrollup,      {.i =  1} },
+        { ALT,            XK_Down,        kscrolldown,    {.i =  1} },
+
+        // alpha
+        { MOD,            XK_s,           changealpha,    {.f = -0.05} },
+        { MOD,            XK_a,           changealpha,    {.f = +0.05} },
+
+        // zoom
+        { MOD,            XK_equal,       zoom,           {.f = +1} },
+        { MOD,            XK_minus,       zoom,           {.f = -1} },
+        { MOD_SHIFT,      XK_parenright,  zoomreset,      {.f =  0} },
+        { MOD_SHIFT,      XK_L,           externalpipe,   {.v = openurlcmd } },
+        { MOD_SHIFT,      XK_Y,           externalpipe,   {.v = copyurlcmd } },
+        { MOD_SHIFT,      XK_O,           externalpipe,   {.v = copyoutput } },
 };
 
 /*

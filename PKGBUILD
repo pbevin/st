@@ -2,7 +2,7 @@
 
 pkgname=st-pbevin-git
 _pkgname=st
-pkgver=0.8.4.r1178.7e6e779
+pkgver=0.8.4.r1182.ecd5e3f
 pkgrel=1
 epoch=1
 pkgdesc="Pete's custom suckless terminal"
